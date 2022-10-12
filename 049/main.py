@@ -74,6 +74,7 @@ def combo_diffs(combo_list):
             ans = t
     return ans
 
+
 ans = []
 for prime in primes_dict:
     cond = combo_diffs(primes_dict[prime])

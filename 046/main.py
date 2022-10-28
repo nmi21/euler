@@ -49,25 +49,26 @@ def get_composite_odds(n):
     return comp_odds
 
 
+# start with 10000 to see if we get anything; if not, increase the limit
 lim = 10000
 
 primes = get_primes(lim)
-print(f"primes == \n"
-      f"{primes}")
-print(len(primes))
-print()
+# print(f"primes == \n"
+#       f"{primes}")
+# print(len(primes))
+# print()
 
 comps = get_composite_odds(lim)
-print(f"comps == \n"
-      f"{comps}")
-print(len(comps))
-print()
+# print(f"comps == \n"
+#       f"{comps}")
+# print(len(comps))
+# print()
 
 double_squares = [2 * x ** 2 for x in range(1, int(sqrt(lim/2) + 1))]
-print(f"double_squares == \n"
-      f"{double_squares}")
-print(len(double_squares))
-print()
+# print(f"double_squares == \n"
+#       f"{double_squares}")
+# print(len(double_squares))
+# print()
 
 possible_sums = []
 for prime in primes:
@@ -76,10 +77,10 @@ for prime in primes:
         if x % 2 != 0 and x < lim and x not in possible_sums:
             possible_sums.append(x)
 possible_sums.sort()
-print(f"possible_sums == \n"
-      f"{possible_sums}")
-print(len(possible_sums))
-print()
+# print(f"possible_sums == \n"
+#       f"{possible_sums}")
+# print(len(possible_sums))
+# print()
 
 ans = None
 for comp in comps:

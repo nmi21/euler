@@ -16,8 +16,9 @@ How many, not necessarily distinct, values of nCr for 1 <= n <= 100, are greater
 
 ---
 Method:
-
-
+Since we don't care if the result is the same as another...
+- cycle over all n between 1:100 and r between 0:n
+- if greater than limit, add 1 to counter
 
 """
 

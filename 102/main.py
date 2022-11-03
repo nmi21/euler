@@ -84,7 +84,7 @@ with open(file="p102_triangles.txt", mode="r") as f:
 tris = [get_coords(tri) for tri in tris]
 is_contained = []
 num_contained = 0
-v = (0,0)
+v = (0, 0)
 for tri in tris:
     A = tri[0]
     B = tri[1]

@@ -25,9 +25,9 @@ types of coins that we have
 
 -- it should be recognized that you can't change the number of possibilities for any value less than the coin being 
 considered
--- that is to say, a 10p coin cannot affect the number of possibilities for how many different ways you can get 7p
+-- that is to say, a 10p coin cannot affect the number of possibilities for how many ways you can get 7p
 
--- the trick here is to recognize that we have already done a fair bit of the calculation. Let's look at the ways to 
+-- the trick here is to recognize that we have already done a fair bit of the calculation. Look at the ways to
 get 5p again:
 
              Using coins that are...
@@ -110,6 +110,9 @@ target_val   <= 2p      with 5p coins   ways to get...               total possi
     9p         5     +       1        +     (4p) == 3       =           8
    10p         6     +       2                              =           10
 
+
+In essence, we start at the value of the next coin (e.g. 10p) and then add 1, then for 11p total, we recognize that we
+already know how to make 1p with all coins <= 10p, and so we can add that to the value that we had previously.
 
 """
 

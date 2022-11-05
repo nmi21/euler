@@ -7,8 +7,10 @@ Find the smallest cube for which exactly five permutations of its digits are cub
 ---
 Method:
 - create a list of cubed numbers
-- extract the list of digits in them
-- compare the list of digits to other lists
+- start at the back of the list and work toward the front of the list
+- with the largest element in the list, compare it against smaller elements and compare the sorted digits
+- if equal, increment a count
+- continue to search until the counter is the same as the COUNT_LIM, which is defined in the problem details
 
 """
 

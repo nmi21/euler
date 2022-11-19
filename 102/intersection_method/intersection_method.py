@@ -13,7 +13,8 @@ intersects the line segments formed by the three points
     - verify that the intersection is in the values of x given by the two points
 - for the special case where a segment is parallel to the x-axis, b must be 0 to satisfy the condition
 """
-
+import time
+t = time.time()
 
 def get_coords(coord_str):
     coords = coord_str.split(',')

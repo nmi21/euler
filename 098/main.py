@@ -120,7 +120,7 @@ largest_square = None
 word_lengths = [len(x) for x in data]
 word_length = max(word_lengths)
 while word_length > 0:
-    # print(word_length)
+    print(word_length)
 
     # extract words only of a certain length
     words = [x for x in data if len(x) == word_length]
@@ -131,7 +131,7 @@ while word_length > 0:
         for j in range(i + 1, len(words)):
             if is_anagram(words[i], words[j]):
                 anagrams.append((words[i], words[j]))
-    # print(anagrams)
+    print(anagrams)
 
     # get all possible number combinations associated with the anagram pairs
     anagram_dict = {}
@@ -146,18 +146,14 @@ while word_length > 0:
         flat_tups = [item for sublist in anagram_values for item in sublist]
         flat_values = [item for sublist in flat_tups for item in sublist]
         largest_square = max(flat_values)
+        print(anagram_dict)
 
         # finish the while loop early
-        break
+        # break
 
     # look to the next smallest word length
-    # print()
+    print()
     word_length -= 1
 
 ans = largest_square
 print(f"ans == {ans}")
-
-
-# TODO can't have the same numbers
-
-# print(get_squares(9))

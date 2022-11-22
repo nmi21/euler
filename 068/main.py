@@ -7,6 +7,40 @@ Method:
 and then we can determine the rest via linear algebra
 - in the 3 gon case, we can make 4 equations, and therefore solve 4 unknowns
 - in the 5 gon case, we have 10 total numbers and can form 6 total equations
+- if we let [a, b, c, d, e] be the values for the outside numbers starting from the top and then going clockwise
+    and we let [r, s, t, u, v] be the values for the inside numbers starting from the top and moving clockwise
+    and we let z be the desired sum
+    and we let y be the sum of all available numbers
+    we can generate the following matrices in Ax = B form
+
+    _                                          _   _       _     _     _
+   |    1   0   0   0   0   1   1   0   0   0   | |     a   |   |   z   |
+   |    0   1   0   0   0   0   1   1   0   0   | |     b   |   |   z   |
+   |    0   0   1   0   0   0   0   1   1   0   | |     c   | = |   z   |
+   |    0   0   0   1   0   0   0   0   1   1   | |     d   |   |   z   |
+   |    0   0   0   0   1   1   0   0   0   1   | |     e   |   |   z   |
+   |_   1   1   1   1   1   1   1   1   1   1  _| |     r   |   |_  y  _|
+                                                  |     s   |
+                                                  |     t   |
+                                                  |     u   |
+                                                  |_    v  _|
+
+- since we are short 4 equations, we will need to search over the range of 4 different variables
+    - if we set values for a, b, c, and d, we can remove those variables from the x vector and the associated columns
+    that would otherwise be required
+    - thus, we can get the following matrices in Ax = B form:
+
+    _                          _   _       _     _                     _
+   |    0   1   1   0   0   0   | |     e   |   |   z - a               |
+   |    0   0   1   1   0   0   | |     r   |   |   z - b               |
+   |    0   0   0   1   1   0   | |     s   | = |   z - c               |
+   |    0   0   0   0   1   1   | |     t   |   |   z - d               |
+   |    1   1   0   0   0   1   | |     u   |   |   z                   |
+   |_   1   1   1   1   1   1  _| |_    v  _|   |_  y - a - b - c - d  _|
+
+    - Then, using numpy's linear algebra tools, we can easily solve this system of linear equations
+
+- from there, we will need to remove duplicate (rotated) solutions, and only using the smallest of those solutions
 """
 
 import itertools

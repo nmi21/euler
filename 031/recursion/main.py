@@ -11,18 +11,18 @@ memo_dict = {}
 
 
 def find_coin_ways(coin_sum, limit_val, coins_available, current_coin_pointer):
-    tup_key = (coin_sum, current_coin_pointer)
+    # tup_key = (coin_sum, current_coin_pointer)
     
     num_ways = 0
     if current_coin_pointer >= len(coins_available):
         return num_ways
     while coin_sum < limit_val:
         num_ways += find_coin_ways(coin_sum, limit_val, coins_available, current_coin_pointer + 1)
-        # print(f"{'__' * current_coin_pointer} Adding {coins_available[current_coin_pointer]} cents")
+        print(f"{'__' * current_coin_pointer} Adding {coins_available[current_coin_pointer]} cents")
         coin_sum += coins_available[current_coin_pointer]
-        # print(f"coin_sum == {coin_sum}")
+        print(f"coin_sum == {coin_sum}")
     if coin_sum == limit_val:
-        # print(f"Solution found!")
+        print(f"Solution found!")
         num_ways += 1
     return num_ways
 

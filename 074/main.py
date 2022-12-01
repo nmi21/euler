@@ -23,7 +23,11 @@ How many chains, with a starting number below one million, contain exactly sixty
 
 ---
 Method:
+- go through every number from 1 to 1000000 to see if the chain == 60
+- develop a function that creates a chain
+    - start with the starting number and continue to add digit factorial sums until you find a number already in chain
 - develop a function that turns a digit into the sum of the factorial of its digits
+    - calculate the digit factorials outside of the function so that they aren't being calculated on every call
 
 """
 

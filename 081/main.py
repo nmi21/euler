@@ -66,11 +66,48 @@ Method:
 
 """
 import numpy as np
+import time
 
-matrix = np.array([
-    [131, 673, 234, 102, 18],
-    [201, 96, 342, 965, 150],
-    [630, 803, 746, 422, 111],
-    [537, 699, 497, 121, 956],
-    [805, 732, 524, 37, 331]
-])
+t = time.time()
+
+# # for testing, try a small array
+# matrix = np.array([
+#     [131, 673, 234, 102, 18],
+#     [201, 96, 342, 965, 150],
+#     [630, 803, 746, 422, 111],
+#     [537, 699, 497, 121, 956],
+#     [805, 732, 524, 37, 331]
+# ])
+# print(matrix)
+# print()
+
+# open the file and save the data to "matrix"
+with open(file="p081_matrix.txt", mode="r") as f:
+    matrix = np.loadtxt(f, delimiter=',', dtype=int)
+
+# create a new matrix that we will continually change to determine minimal cost of reaching each position
+position_sums = matrix
+
+# fill top row and first column because they can only go in one direction
+for r in range(1, position_sums.shape[0]):
+    position_sums[r, 0] += position_sums[r-1, 0]
+for c in range(1, position_sums.shape[1]):
+    position_sums[0, c] += position_sums[0, c-1]
+
+# starting at (1, 1), we can begin to calculate the total cost of reaching each position
+for row in range(1, position_sums.shape[0]):
+    for col in range(1, position_sums.shape[1]):
+        # find the minimum of the elements above and to the left (because can only move right and down)
+        above = position_sums[row - 1, col]
+        left = position_sums[row, col - 1]
+
+        # add the minimum of the two to find the minimal path sum
+        position_sums[row, col] += min(above, left)
+
+# # print the matrix showing the cost of reaching each point
+# print(position_sums)
+
+# the answer will be the rightmost bottommost element, which is also the last element in the np array
+ans = position_sums[-1, -1]
+print(f"ans == {ans}")
+print(f"{time.time() - t} sec")

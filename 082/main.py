@@ -13,6 +13,8 @@ the right column, and only moving up, down, and right, is indicated by (); the s
 Find the minimal path sum from the left column to the right column in matrix.txt (right click and
 "Save Link/Target As..."), a 31K text file containing an 80 by 80 matrix.
 
+
+---
 Method:
 - it can be observed that it would never be advantageous to go up/down on the leftmost column
     - otherwise, you could and should just start at the point you wanted to start
@@ -23,4 +25,73 @@ the right, and then up/down the appropriate number of steps
 - if you collapse all the way across the matrix, you will be left with a single column at the end
     - simply taking the minimum of that column will provide the minimal path sum
 
+--
+Since it is apparently easier to deal with rows in numpy, we will modify the rules a little bit and deal with a
+transposed matrix. With a transposed matrix, the starting position can be anywhere in the top row and we will finish
+anywhere in the bottom row. Now, our available moves are only down, left, and right.
+
+--
+For each row, create a new row that will take in the cost to get to each column on the next row
+e.g.
+    1   4   4
+    1   1   4
+    4   1   1
+
+Looking at the first row we get
+    1   4   4
+and the next row is
+    1   1   4
+
+To get to each element in the next row, one would get three different rows:
+    ind0 == 1   [   2   3   7   ]
+    ind1 == 4   [   6   5   9   ]
+    ind2 == 4   [   10  9   8   ]
+This was calculated by going down 1 row to the next element, and then adjacent as necessary to the correct column.
+We can then take the minimum from each column and collapse the top two rows.
+In this case, it turns out that ind0 row is all the minimum numbers.
+
+So, now our matrix could be collapsed as follows:
+    2   3   7
+    4   1   1
+
+The reason we can collapse the first row because those values represent the minimum cost function to get to that
+location in the matrix.
+
+Continuing in this matrix, we would get the following
+    ind0 == 1   [   6   7   8   ]
+    ind1 == 4   [   8   4   5   ]
+    ind2 == 4   [   13  9   8   ]
+Now taking the minimum from each column gives us
+                [   6   4   5   ]
+
+Given that this is our last row, we only need to find the minimum here to find the lowest cost function: 4
+
 """
+import numpy as np
+
+with open(file="p082_matrix.txt", mode="r") as f:
+    data = np.loadtxt(f, delimiter=',', dtype=int)
+
+data = np.array((
+    [1, 1, 4],
+    [4, 1, 1],
+    [4, 4, 4]
+))
+
+# it seems that it is easier to iterate over rows, and so transpose to rows in order to make iterations easier
+data = data.T
+print(data)
+print()
+
+while data.shape[0] > 1:
+    top_row = data[0]
+    next_row = data[1]
+
+    print(top_row)
+    print(next_row)
+
+    for ind in range(len(top_row)):
+
+
+    break
+

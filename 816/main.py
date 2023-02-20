@@ -134,6 +134,7 @@ for i in range(num_divs):
         # start with each point in the current cell
         for pt1 in tree_dict[current_cell]:
             for cell in adjacent_cells:
+
                 # check to make sure that cell indices are valid, otherwise skip
                 if cell not in tree_dict:
                     continue

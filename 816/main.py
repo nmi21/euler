@@ -70,7 +70,7 @@ def dist(point1, point2):
     return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** 0.5
 
 
-# generate all of the values of s(n) necessary
+# generate all the values of s(n) necessary
 s_list = [0] * (2 * D_LIMIT)
 s_list[0] = 290797
 for i in range(1, len(s_list)):

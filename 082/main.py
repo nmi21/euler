@@ -72,26 +72,46 @@ import numpy as np
 with open(file="p082_matrix.txt", mode="r") as f:
     data = np.loadtxt(f, delimiter=',', dtype=int)
 
-data = np.array((
-    [1, 1, 4],
-    [4, 1, 1],
-    [4, 4, 4]
-))
+# data = np.array((
+#     [1, 1, 4],
+#     [4, 1, 1],
+#     [4, 4, 4]
+# ))
 
 # it seems that it is easier to iterate over rows, and so transpose to rows in order to make iterations easier
 data = data.T
-print(data)
-print()
 
 while data.shape[0] > 1:
+
+    # pull the top_row and next_row for easy reference
     top_row = data[0]
     next_row = data[1]
 
-    print(top_row)
-    print(next_row)
+    # go through each element and create a cost function to reach that location from any point within the row
+    cost_list = []
+    for i in range(len(next_row)):
+        # initialize with the value from the row above at a specified index
+        row_cost = [top_row[i]] * len(next_row)
 
-    for ind in range(len(top_row)):
+        # then add the total values to get to each location in the next row
+        for j in range(len(next_row)):
+            if i == j:
+                row_cost[j] += next_row[i]
+            elif i < j:
+                row_cost[j] += sum(next_row[i: j + 1])
+            elif i > j:
+                row_cost[j] += sum(next_row[j:i])
+
+        # add this list to the cost_list, to be compared later
+        cost_list.append(row_cost)
+
+    # calculate the min_cost by finding the smallest element at each index in the cost_list
+    min_cost = np.amin(cost_list, axis=0)
+
+    # replace the next_row with the min_cost and delete the top row
+    data[1] = min_cost
+    data = np.delete(data, obj=0, axis=0)
 
 
-    break
-
+print(data)
+print(min(data[0]))

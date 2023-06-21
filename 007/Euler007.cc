@@ -33,7 +33,7 @@ int main() {
     int limit = 10001;
     int prime_counter = 0;
     int i = 0;
-    while (prime_counter < limit) {
+    while (prime_counter <= limit) {
         ++i;
 
         if (is_prime(i)) {

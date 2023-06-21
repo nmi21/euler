@@ -16,6 +16,7 @@ for a in range(1, 1000):
     for b in range(a + 1, 1000):
         c = sqrt(a**2 + b**2)
         if c - int(c) == 0 and a + b + c == 1000:
+            # print(f"a == {a}, b == {b}, c == {int(c)}")
             prod = int(a*b*c)
 
 ans = prod

@@ -48,7 +48,5 @@ int main() {
 
     std::cout << "ans == " << largest_prime << std::endl;
 
-    std::cout << "Done" << std::endl;
-
     return 0;
 }

@@ -41,7 +41,7 @@ int main() {
         }
     }
 
-    std::cout << i << std::endl;
+    std::cout << "ans == " << i << std::endl;
 
     return 0;
 }

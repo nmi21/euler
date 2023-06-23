@@ -45,7 +45,7 @@ Rewrite it:
 (1 + p/n) ^ 1/3
 ((n + p) / n) ^ 1/3     Let n+p = a^3; Let n = b^3
 (a^3 / b^3) ^ 1/3
-a / b is an integer
+a^3 / b^3 is a perfect cube to make (1 + p/n)^1/3 an integer
 
 using Let n+p = a^3; Let n = b^3 :
 p = a^3 - n     Let n = b^3

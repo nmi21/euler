@@ -30,11 +30,11 @@ Factor x^3 - n^3:
 x^3 - n^3 = (x - n) * (x^2 + x*n + n^2)
 
 
-This is interesting. Because it means that p = [(x - n) / n^2] * [(x^2 + x*n + n^2) / n^2]
+This is interesting. Because it means that p = [(x - n) / n] * [(x^2 + x*n + n^2) / n]
 
 Since the definition of a prime is that its only factors are 1 and itself, it must mean that:
-[(x - n) / n^2] is a factor of p
-[(x^2 + x*n + n^2) / n^2] is the other factor of p
+[(x - n) / n] is a factor of p
+[(x^2 + x*n + n^2) / n] is the other factor of p
 
 Another way to look at the set of equations is:
 n^3 + n^2 * p = x^3

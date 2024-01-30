@@ -65,10 +65,15 @@ def solve(limit):
     # iterate over all values of x1, etc.
     for x1, y1, x2, y2 in itertools.product(range(limit + 1), repeat=4):
 
-        # compare the slopes to eliminate duplicates
+        # if P and Q are both on the y axis, not a triangle
         if x1 == x2 == 0:
             continue
 
+        # if P and Q are both on the x axis, not a triangle
+        if y1 == y2 == 0:
+            continue
+
+        # compare the slopes
         if x1 == 0:
             slope1 = float('inf')
         else:

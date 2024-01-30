@@ -55,15 +55,32 @@ def pythagorean_check_squares(a, b, c):
 
 
 def solve(limit):
-    
+
     # create an empty list which will store right triangle coordinates
-    right_tris = set()
+    right_tris = []
 
     # set the origin
     point_O = (0, 0)
 
     # iterate over all values of x1, etc.
     for x1, y1, x2, y2 in itertools.product(range(limit + 1), repeat=4):
+
+        # compare the slopes to eliminate duplicates
+        if x1 == x2 == 0:
+            continue
+
+        if x1 == 0:
+            slope1 = float('inf')
+        else:
+            slope1 = y1 / x1
+
+        if x2 == 0:
+            slope2 = float('inf')
+        else:
+            slope2 = y2 / x2
+
+        if slope1 < slope2:
+            continue
 
         # create the points
         point_P = (x1, y1)
@@ -76,8 +93,9 @@ def solve(limit):
 
         # see if the Pythagorean condition is met, add to the right tris list
         if pythagorean_check_squares(dist_OP, dist_OQ, dist_PQ):
-            points = sorted([point_P, point_Q])
-            right_tris.add(tuple(points))
+            # points = sorted([point_P, point_Q])
+            # right_tris.add(tuple(points))
+            right_tris.append((point_P, point_Q))
 
     return right_tris
 

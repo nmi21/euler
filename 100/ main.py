@@ -120,8 +120,17 @@ while n < LIMIT:
     x, y = next_pell_sol(x, y)
     n = int((1 + math.sqrt(2*(y**2) - 1)) / 2)
 
-# calculate blue tiles given total tiles, n
-blue_tiles = int((1 + math.sqrt(1 + (2*(n**2)) - 2*n))/2)
-print(f"{blue_tiles=}")
+    print(f"total_tiles={n}")
+
+    # calculate blue tiles given total tiles, n
+    blue_tiles = int((1 + math.sqrt(1 + (2*(n**2)) - 2*n))/2)
+    print(f"{blue_tiles=}")
+
+    red_tiles = n - blue_tiles
+    print(f"{red_tiles=}")
+
+    print()
+
+
 
 print(f"{time.time() - t} sec")

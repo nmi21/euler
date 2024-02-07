@@ -30,7 +30,16 @@ import time
 t = time.time()
 
 
-def min_path_sum(matrix):
+my_data = [
+    [131,     673,     234,     103,    18],
+    [201,     96,      342,     965,    150],
+    [630,     803,     746,     422,    111],
+    [537,     699,     497,     121,    956],
+    [805,     732,     524,     37,     331]
+]
+
+
+def min_path_sum(matrix, print_path_sum=0):
     # gets the minimal path sum of a matrix
     # matrix is given in the form:
     # matrix = [
@@ -75,6 +84,14 @@ def min_path_sum(matrix):
         for i in range(rows - 2, -1, -1):
             path_sum[i][j] = min(path_sum[i][j], matrix[i][j] + path_sum[i + 1][j])
 
+        if print_path_sum:
+            print(f"{j=}")
+            print(f"path_sum = [")
+            for p in path_sum:
+                print(f"    {p}")
+            print("]")
+            print()
+
     # from there, grab the min value from the last column
     return min([path_sum[i][-1] for i in range(rows)])
 
@@ -96,6 +113,8 @@ def extract_matrix():
 
 mat = extract_matrix()
 ans = min_path_sum(mat)
+
+min_path_sum(my_data, print_path_sum=1)
 
 print(f"{ans=}")
 print(f"{time.time() - t} sec")
